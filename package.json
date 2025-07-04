@@ -15,6 +15,9 @@
   ],
   "author": "YourNameHere",
   "license": "MIT",
+  "engines": {               // <--- YES, INCLUDE THIS
+    "node": "18.x"
+  },
   "dependencies": {
     "frog": "^0.8.0",
     "satori": "^0.10.13"
