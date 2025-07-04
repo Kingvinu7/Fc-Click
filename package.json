@@ -14,8 +14,8 @@
     "mini-app"
   ],
   "author": "YourNameHere",
-  "license": "MIT",
-  "engines": {               // <--- YES, INCLUDE THIS
+  "license": "MIT", // <-- NO COMMA HERE
+  "engines": {
     "node": "18.x"
   },
   "dependencies": {
