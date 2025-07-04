@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "installCommand": "npm ci",
   "builds": [
     {
       "src": "index.js",
@@ -19,10 +18,6 @@
     {
       "src": "/public/(.*)",
       "dest": "/public/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
     }
   ]
 }
