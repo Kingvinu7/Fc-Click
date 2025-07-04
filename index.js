@@ -1,24 +1,19 @@
-const { Frog } = require('frog');
-const { serveStatic } = require('frog/serve-static');
+// Use 'import' for ES Modules
+import { Frog } from 'frog';
+import { serveStatic } from 'frog/serve-static';
 
 // --- FROG APP SETUP ---
 const app = new Frog({
-  // `basePath` must match the path Farcaster uses to access your frame (and Vercel's route).
   basePath: '/api/frame',
-
-  // `initialState` defines the starting values for your game.
-  // This state will be unique for each user playing the game.
   initialState: {
-    count: 0, // Our counter for the clicker game
+    count: 0,
   },
 });
 
 // --- GAME LOGIC ---
-// This function runs every time a user interacts with your Farcaster Mini App.
 app.frame('/api/frame', async (c) => {
   const { buttonValue, deriveState } = c;
 
-  // Update the game state based on button clicks
   const state = deriveState((previousState) => {
     if (buttonValue === 'click') {
       previousState.count++;
@@ -27,7 +22,6 @@ app.frame('/api/frame', async (c) => {
     }
   });
 
-  // --- Prepare Image and Buttons for the Frame ---
   const imageContent = `
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; background: #4CAF50; color: white; font-size: 60px; text-align: center;">
       <h1>Simple Clicker Game!</h1>
@@ -38,25 +32,21 @@ app.frame('/api/frame', async (c) => {
   const buttons = [
     '<c.Button value="click">Click Me!</c.Button>',
     '<c.Button value="reset">Reset</c.Button>',
-    '<c.Button.Link href="https://farcaster.xyz">Visit Farcaster</c.Button.Link>' // Example link button
+    '<c.Button.Link href="https://farcaster.xyz">Visit Farcaster</c.Button.Link>'
   ];
 
-  // Return the Farcaster Frame response (image and buttons)
   return c.res({
-    image: imageContent, // The HTML content that satori converts into an image
-    intents: buttons,    // The buttons to display below the image
+    image: imageContent,
+    intents: buttons,
   });
 });
 
 // --- Development Tools (for local testing only) ---
-// 'serveStatic' allows your app to deliver static files (like favicons) from the 'public' folder.
-app.use(serveStatic(__dirname, { root: 'public' }));
-
-// This line enables the Frog devtools, useful for local testing in a browser.
-// It's commented out by default for Vercel deployment to avoid potential conflicts,
-// but you can uncomment it if you set up local development later.
-// require('frog/dev').devtools(app, { serveStatic }); // COMMENTED OUT FOR VERCEL
+// Note: 'serveStatic' and 'devtools' need different import/setup for local dev with ESM.
+// For Vercel deployment, this part is now even simpler.
+// If you need local devtools, this would be uncommented with appropriate ESM setup for it.
+// For Vercel, this is implicitly handled by the route/build configuration.
 
 // --- EXPORT THE APP FOR VERCEL ---
-// This is the CRUCIAL line that tells Vercel how to run your application.
-module.exports = app;
+// Use 'export default' for ES Modules
+export default app;
