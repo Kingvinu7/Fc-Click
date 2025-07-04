@@ -2,7 +2,7 @@
   "name": "fc-click-game",
   "version": "1.0.0",
   "description": "A simple Farcaster Mini App clicker game.",
-  "type": "module",  <-- THIS IS THE NEW CRITICAL LINE
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
