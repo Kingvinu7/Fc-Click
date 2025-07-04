@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "frog": "^0.8.0",
-    "satori": "^0.10.13"
+    "satori": "^0.10.13",
+    "hono": "^3.12.x"
   }
 }
