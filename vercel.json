@@ -1,12 +1,10 @@
 {
   "version": 2,
+  "installCommand": "npm ci",  <-- ADD THIS LINE!
   "builds": [
     {
       "src": "index.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["node_modules/**"]
-      }
+      "use": "@vercel/node"
     },
     {
       "src": "public/**",
