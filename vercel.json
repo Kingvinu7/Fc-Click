@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "index.js",
-      "use": "@vercel/node@2.10.3"
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["node_modules/**"]
+      }
     },
     {
       "src": "public/**",
@@ -12,8 +15,16 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/frame",
       "dest": "/index.js"
+    },
+    {
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
