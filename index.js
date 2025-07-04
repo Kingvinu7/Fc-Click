@@ -42,11 +42,15 @@ app.frame('/api/frame', async (c) => {
 });
 
 // --- Development Tools (for local testing only) ---
-// Note: 'serveStatic' and 'devtools' need different import/setup for local dev with ESM.
-// For Vercel deployment, this part is now even simpler.
-// If you need local devtools, this would be uncommented with appropriate ESM setup for it.
-// For Vercel, this is implicitly handled by the route/build configuration.
+app.use(serveStatic(__dirname, { root: 'public' })); // Keep this for local static serving
+
+// This line enables the Frog devtools, useful for local testing in a browser.
+// It's commented out by default for Vercel deployment to avoid potential conflicts,
+// but you can uncomment it if you set up local development later.
+// import { devtools } from 'frog/dev'; // You might need this import if devtools are uncommented
+// devtools(app, { serveStatic }); // COMMENTED OUT FOR VERCEL
 
 // --- EXPORT THE APP FOR VERCEL ---
-// Use 'export default' for ES Modules
-export default app;
+// This is the CRUCIAL change: Export the handler function Vercel expects.
+// Frog's `app.fetch` property is the universal handler for Vercel and other environments.
+export default app.fetch;
