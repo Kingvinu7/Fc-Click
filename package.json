@@ -1,0 +1,21 @@
+{
+  "name": "fc-click-game",
+  "version": "1.0.0",
+  "description": "A simple Farcaster Mini App clicker game.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "farcaster",
+    "frames",
+    "mini-app"
+  ],
+  "author": "YourNameHere",
+  "license": "MIT",
+  "dependencies": {
+    "frog": "^0.8.0",
+    "satori": "^0.10.13"
+  }
+}
