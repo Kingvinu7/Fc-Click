@@ -14,7 +14,7 @@
     "mini-app"
   ],
   "author": "YourNameHere",
-  "license": "MIT", // <-- NO COMMA HERE
+  "license": "MIT",
   "engines": {
     "node": "18.x"
   },
